@@ -1,5 +1,9 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import SideBar from "@/components/SideBar";
+import SmallDevicesSideBar from "@/components/SmallDevicesSideBar";
+import WholeContextProvider, { useWholeContext } from "@/context/WholeContext";
+import ContextWrapper from "@/context/ContextWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,11 +22,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[var(--BACKGROUNDCOLOR)] text-[var(--PARATEXT)] w-full h-full`}
       >
-        {children}
+        <ContextWrapper children={children} />
       </body>
     </html>
   );
